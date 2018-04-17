@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="Predicting Taxi Pickups in NYCIn this homework, we will explore k-nearest neighbor, linear and polynomial regression methods for predicting a quantita">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="Chris">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Predicting Tax Pickups in NYC"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="The Road To Data"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Predicting Tax Pickups in NYC - The Road To Data</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Configurable Title</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Predicting Tax Pickups in NYC</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-04-17
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/knn/">#knn</a> <a href="/tags/linear-regression/">#linear regression</a> <a href="/tags/polynomial-regression/">#polynomial regression</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/Data-Science/">Data Science</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="Predicting-Taxi-Pickups-in-NYC"><a href="#Predicting-Taxi-Pickups-in-NYC" class="headerlink" title="Predicting Taxi Pickups in NYC"></a>Predicting Taxi Pickups in NYC</h1><p>In this homework, we will explore k-nearest neighbor, linear and polynomial regression methods for predicting a quantitative variable. Specifically, we will build regression models that can predict the number of taxi pickups in New York city at any given time of the day. These prediction models will be useful, for example, in monitoring traffic in the city.</p>
+<p>The data set for this problem is given in files <code>dataset_1_train.txt</code> and <code>dataset_1_test.txt</code> as separate training and test sets. The first column in each file contains the time of a day in minutes, and the second column contains the number of pickups observed at that time. The data set covers taxi pickups recorded during different days in Jan 2015.</p>
+<p>We will fit regression models that use the time of the day (in minutes) as a predictor and predict the average number of taxi pick ups at that time. The models will be fitted to the training set, and  evaluated on the test set. The performance of the models will be evaluated using the $R^2$ metric. </p>
+<p><strong>Data Normalization:</strong> As a first step, we suggest that you normalize the <code>TimeMin</code> predictor to a value between 0 and 1. This can be done by dividing the time column in the training and test sets by 1440 (i.e. the maximum value the predictor can take). This normalization step would be particularly helpful while fitting polynomial regression models on this data.</p>
+<p>Generate a scatter plot of the training data points, with the time of the day on the X-axis and the number of taxi pickups on the Y-axis. Does the pattern of taxi pickups make intuitive sense to you?</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">train_data = pd.read_csv(<span class="string">'data/dataset_1_train.txt'</span>)</span><br><span class="line">test_data = pd.read_csv(<span class="string">'data/dataset_1_test.txt'</span>)</span><br><span class="line">train_data.head()</span><br></pre></td></tr></table></figure>
+<div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>TimeMin</th><br>      <th>PickupCount</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>0</th><br>      <td>860.0</td><br>      <td>33.0</td><br>    </tr><br>    <tr><br>      <th>1</th><br>      <td>17.0</td><br>      <td>75.0</td><br>    </tr><br>    <tr><br>      <th>2</th><br>      <td>486.0</td><br>      <td>13.0</td><br>    </tr><br>    <tr><br>      <th>3</th><br>      <td>300.0</td><br>      <td>5.0</td><br>    </tr><br>    <tr><br>      <th>4</th><br>      <td>385.0</td><br>      <td>10.0</td><br>    </tr><br>  </tbody><br></table><br></div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_data.describe()</span><br></pre></td></tr></table></figure>
+<div><br><style><br>    .dataframe thead tr:only-child th {<br>        text-align: right;<br>    }<br><br>    .dataframe thead th {<br>        text-align: left;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>TimeMin</th><br>      <th>PickupCount</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>count</th><br>      <td>250.000000</td><br>      <td>250.000000</td><br>    </tr><br>    <tr><br>      <th>mean</th><br>      <td>701.416000</td><br>      <td>32.780000</td><br>    </tr><br>    <tr><br>      <th>std</th><br>      <td>409.247928</td><br>      <td>18.910368</td><br>    </tr><br>    <tr><br>      <th>min</th><br>      <td>4.000000</td><br>      <td>1.000000</td><br>    </tr><br>    <tr><br>      <th>25%</th><br>      <td>381.500000</td><br>      <td>18.000000</td><br>    </tr><br>    <tr><br>      <th>50%</th><br>      <td>686.000000</td><br>      <td>32.000000</td><br>    </tr><br>    <tr><br>      <th>75%</th><br>      <td>1032.750000</td><br>      <td>44.000000</td><br>    </tr><br>    <tr><br>      <th>max</th><br>      <td>1438.000000</td><br>      <td>95.000000</td><br>    </tr><br>  </tbody><br></table><br></div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Plot the results and label</span></span><br><span class="line">plt.scatter(train_data[<span class="string">'TimeMin'</span>], train_data[<span class="string">'PickupCount'</span>])</span><br><span class="line">plt.gca().set_xlabel(<span class="string">'Time (min)'</span>)</span><br><span class="line">plt.gca().set_ylabel(<span class="string">'Pickup count'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.text.Text at 0xb625080&gt;
+</code></pre><p><img src="output_7_1.png" alt="png"></p>
+<font color="blue"><br><br>Yes, the pattern makes intuitive sense. It looks like there may be the fewest pickups early in the morning when most people are asleep. There may also be more pickups during commuting hours.<br><br><strong>Note: any comment here that addresses the underlying forces driving this pattern is acceptable</strong><br><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_data[<span class="string">'NormTimeMin'</span>] = train_data[<span class="string">'TimeMin'</span>] / <span class="number">1440</span></span><br><span class="line">test_data[<span class="string">'NormTimeMin'</span>] = test_data[<span class="string">'TimeMin'</span>] / <span class="number">1440</span></span><br></pre></td></tr></table></figure><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_data = train_data.sort_values([<span class="string">'NormTimeMin'</span>])</span><br><span class="line">test_data = test_data.sort_values([<span class="string">'NormTimeMin'</span>])</span><br></pre></td></tr></table></figure><br><br># Part (a): k-Nearest Neighbors<br><br>We begin with k-Nearest Neighbors (k-NN), a non-parametric regression technique. You may use <code>sklearn</code>‘s built-in functions to run k-NN regression. Create a <code>KNeighborsRegressor</code> object, use the <code>fit</code> method in the object to fit a k-NN regressor model, use the <code>predict</code> method to make predictions from the model, and the <code>score</code> method to evaluate the $R^2$ score of the model on a data set.<br><br>- Fit k-NN regression models:<br>    - Fit a k-NN regression model to the training set for different values of $k$ (e.g. you may try out values 1, 2, 10, 25, 50, 100 and 200).<br>    - If you are using <code>sklearn</code>‘s built-in functions for k-NN regression, explain what happens when you invoke the <code>fit</code> function.<br>    - If $n$ is the number of observations in the training set, what can you say about a k-NN regression model that uses $k = n$?<br><br><font color="blue"> When you invoke the fit function, sklearn learns the uniformly weighted average of the $k$ nearest points to every possible point in the space (or learns the data necessary to predict it later, i.e. just the points and their y values). When we ask it to predict on any of these possible points, it returns this weighted average of the y values of the $k$ nearest points. <br><br> If $k=n$, all points will receive the same predicted value, equal to the average of all of the points </font>    
+
+<ul>
+<li>Visualize the fitted models: <ul>
+<li>Generate a scatter plot of the training data points, and in the same figure, also generate line plots of the predicted values $\hat{y}$ from each fitted model as a function of the predictor variable $x$. (<em>Hint:</em> you may want to sort the $x$ values before plotting.)</li>
+<li>How does the value of $k$ effect the fitted model?</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(train_data[<span class="string">'NormTimeMin'</span>].shape)</span><br><span class="line">print(test_data.PickupCount.shape)</span><br></pre></td></tr></table></figure>
+<pre><code>(250,)
+(1000,)
+</code></pre><hr>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">fig, axs = plt.subplots(<span class="number">2</span>,<span class="number">4</span>, figsize=(<span class="number">15</span>, <span class="number">6</span>), facecolor=<span class="string">'w'</span>, edgecolor=<span class="string">'k'</span>)</span><br><span class="line">fig.subplots_adjust(hspace = <span class="number">.5</span>, wspace=<span class="number">.3</span>)</span><br><span class="line">K = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>,<span class="number">8</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">250</span>]</span><br><span class="line">axs = axs.ravel()</span><br><span class="line"></span><br><span class="line">n_train = train_data.shape[<span class="number">0</span>]</span><br><span class="line">n_test = test_data.shape[<span class="number">0</span>]</span><br><span class="line">r2_test = []</span><br><span class="line">r2_train = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i,k <span class="keyword">in</span> enumerate(K): </span><br><span class="line">    knn_model = KNeighborsRegressor(n_neighbors=k)</span><br><span class="line">    knn_model.fit(train_data[[<span class="string">'NormTimeMin'</span>]], train_data[[<span class="string">'PickupCount'</span>]])</span><br><span class="line">    predicted_pickups_train = knn_model.predict(train_data[[<span class="string">'NormTimeMin'</span>]])</span><br><span class="line">    predicted_pickups = knn_model.predict(test_data[[<span class="string">'NormTimeMin'</span>]])</span><br><span class="line"></span><br><span class="line">    r2_train.append( r2_score(train_data[[<span class="string">'PickupCount'</span>]], predicted_pickups_train))</span><br><span class="line">    r2_test.append( r2_score(test_data[[<span class="string">'PickupCount'</span>]], predicted_pickups))</span><br><span class="line">    </span><br><span class="line">    axs[i].plot(test_data[<span class="string">'NormTimeMin'</span>], predicted_pickups, <span class="string">'*'</span>, </span><br><span class="line">                label=<span class="string">'Predicted'</span>)</span><br><span class="line">    axs[i].plot(test_data[<span class="string">'NormTimeMin'</span>], test_data[<span class="string">'PickupCount'</span>], <span class="string">'.'</span>, </span><br><span class="line">                alpha=<span class="number">0.2</span>, label=<span class="string">'Actual'</span>)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Set labels</span></span><br><span class="line">    axs[i].set_title(<span class="string">"$k = "</span> + str(k) + <span class="string">"$"</span>)</span><br><span class="line">    axs[i].set_xlabel(<span class="string">'Time (min)'</span>)</span><br><span class="line">    axs[i].set_ylabel(<span class="string">'Pickup Count'</span>)</span><br><span class="line"></span><br><span class="line">fig.tight_layout()</span><br></pre></td></tr></table></figure>
+<p><img src="output_15_0.png" alt="png"></p>
+<font color="blue">The lower the value of $k$, the more variance in the predictions. The higher the value of $k$, the smoother the prediction. The ideal value of $k$ looks to be around 10.</font>
+
+<ul>
+<li>Evaluate the fitted models:<ul>
+<li>Compute the $R^2$ score for the fitted models on both the training and test sets. Are some of the calculated $R^2$ values negative? If so, what does this indicate? What does a $R^2$ score of 0 mean?</li>
+<li>Make plots of the training and test $R^2$ values as a function of $k$. Do the training and test $R^2$ plots exhibit different trends? Explain how the value of $k$ influences the training and test $R^2$ values.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(K, r2_test, <span class="string">'s-'</span>, label=<span class="string">'Test'</span>)</span><br><span class="line">plt.plot(K, r2_train, <span class="string">'s-'</span>, label=<span class="string">'Train'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Neighbors K'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'$R^2$'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.legend.Legend at 0xd20dfd0&gt;
+</code></pre><p><img src="output_18_1.png" alt="png"></p>
+<font color="blue">Some of the $R^2$ are negative, implying that the chosen model fits worse than a horizontal line. An $R^2$ of 0 indicates that the model explains none of the variation around the mean. This is true for $n=250$, which is exactly a horizontal line centered at the mean. <br><br> The training and test plots of $R^2$ exhibit different trends, as for small $k$, the model overfits the data, so it achieves a very good $R^2$ on the training set and a very poor $R^2$ on the test data. On the test set, greater $k$ decreases overfitting, but too large of $k$ does not allow for enough variation for an accurate prediction, so the test $R^2$ increases to a point and then decreases. Because the training $R^2$ benefits from the overfitting, the training $R^2$ only decreases as $k$ increases. </font>   
+
+<h1 id="Part-b-Simple-Linear-Regression"><a href="#Part-b-Simple-Linear-Regression" class="headerlink" title="Part (b): Simple Linear Regression"></a>Part (b): Simple Linear Regression</h1><p>We next consider parametric approaches for regression, starting with simple linear regression, which assumes that the response variable has a linear relationship with the predictor. Do you see any advantages in using a parametric regression model over k-NN regression?</p>
+<p>We suggest that you use the <code>statsmodels</code> module for linear regression. This module has built-in functions to summarize the results of regression, and to compute confidence intervals for estimated regression parameters. Create a <code>OLS</code> class instance, use the <code>fit</code> method in the instance for fitting a linear regression model, and use the <code>predict</code> method to make predictions. To include an intercept term in the regression model, you will need to append a column of 1’s to the array of predictors using the <code>sm.add_constant</code> method. The <code>fit</code> method returns a <code>results</code> instance. Use the  <code>results.summary</code> method to obtain a summary of the regression fit, the <code>results.params</code> attribute to get the estimated regression parameters, and the <code>conf_int</code> method to compute confidence intervals for the estimated parameters. You may use the <code>r2_score</code> function to compute $R^2$.</p>
+<p>Using the suggested built-in functions, answer the following questions:</p>
+<ul>
+<li>Fit a linear regression model to the training set, and evaluate its $R^2$ value on both the training and test sets. How does the test $R^2$ score compare with the best test $R^2$ value obtained with k-NN regression in Part (a)?</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">X_train = sm.add_constant(train_data[[<span class="string">'NormTimeMin'</span>]].values)</span><br><span class="line">model = sm.OLS(train_data[<span class="string">'PickupCount'</span>].values, X_train)</span><br><span class="line">results = model.fit()</span><br><span class="line"></span><br><span class="line">y_hat_train = results.predict(X_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># test case</span></span><br><span class="line">X_test = sm.add_constant(test_data[[<span class="string">'NormTimeMin'</span>]].values)</span><br><span class="line">y_hat_test = results.predict(X_test)</span><br><span class="line"></span><br><span class="line">r2_score_train = r2_score(train_data[[<span class="string">'PickupCount'</span>]].values, y_hat_train) </span><br><span class="line">r2_score_test = r2_score(test_data[[<span class="string">'PickupCount'</span>]].values, y_hat_test)</span><br><span class="line"></span><br><span class="line">print(r2_score_train , r2_score_test)</span><br></pre></td></tr></table></figure>
+<pre><code>0.207213752099 0.247712329948
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(test_data[<span class="string">'NormTimeMin'</span>], test_data[<span class="string">'PickupCount'</span>], <span class="string">'.'</span>, alpha=<span class="number">0.2</span>)</span><br><span class="line">plt.plot(X_train[:,<span class="number">1</span>], y_hat_train)</span><br><span class="line">plt.xlabel(<span class="string">'Time (normalized)'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Pickup count'</span>)</span><br><span class="line">plt.gca().legend()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.legend.Legend at 0xcfb8cf8&gt;
+</code></pre><p><img src="output_22_1.png" alt="png"></p>
+<font color="blue">The $R^2$ is less than the best case $R^2$ achieved from KNN.</font>
+
+<ul>
+<li>Compute confidence intervals:<ul>
+<li>Print the slope and intercept values for the fitted linear model. What does the sign of the slope convey about the data?</li>
+<li>Compute the 95% confidence interval for the slope and intercept. Based on this information, do you consider the estimates of the model parameters to be reliable?</li>
+<li>Do you expect a 99% confidence interval for the slope and intercept to be tighter or looser than the 95% confidence intervals? Explain your answer.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># plotting the knn results just for comparison </span></span><br><span class="line">plt.plot(K, r2_test, <span class="string">'s-'</span>, label=<span class="string">'KNN - test'</span>)</span><br><span class="line">plt.plot(K, r2_train, <span class="string">'s-'</span>, label=<span class="string">'KNN - train'</span>)</span><br><span class="line"></span><br><span class="line">plt.axhline(y=r2_score_test, linewidth=<span class="number">2</span>, label=<span class="string">'Lin Reg test'</span>,</span><br><span class="line">            color=sns.color_palette()[<span class="number">2</span>])</span><br><span class="line">plt.axhline(y=r2_score_train, linewidth=<span class="number">2</span>, label =<span class="string">'Lin Reg train'</span>,</span><br><span class="line">           color=sns.color_palette()[<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'$R^2$'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Neighbors K'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'$R^2$'</span>)</span><br><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.legend.Legend at 0xd076c88&gt;
+</code></pre><p><img src="output_25_1.png" alt="png"></p>
+<font color="red"><br><!-- Why is R2 for test higher then train? 
+=== Most likely the split train-test is such.  --><br><br>In the KNN model, why is the $R^2$ for the test set slightly higher than $R^2$ for the training set? This is the consequence of using comparitively few points in our training set. Typically, $R^2$ will be higher on the training set than on the testing set.<br><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(results.params)</span><br><span class="line">print(results.tvalues)</span><br><span class="line">print(results.summary())</span><br><span class="line">print(results.conf_int())</span><br></pre></td></tr></table></figure><br><br>    [ 18.02638518  30.28902299]<br>    [ 8.5009351   8.05113435]<br>                                OLS Regression Results<br>    ==============================================================================<br>    Dep. Variable:                      y   R-squared:                       0.207<br>    Model:                            OLS   Adj. R-squared:                  0.204<br>    Method:                 Least Squares   F-statistic:                     64.82<br>    Date:                Tue, 17 Apr 2018   Prob (F-statistic):           3.43e-14<br>    Time:                        13:34:27   Log-Likelihood:                -1060.1<br>    No. Observations:                 250   AIC:                             2124.<br>    Df Residuals:                     248   BIC:                             2131.<br>    Df Model:                           1<br>    Covariance Type:            nonrobust<br>    ==============================================================================<br>                     coef    std err          t      P&gt;|t|      [0.025      0.975]<br>    ——————————————————————————<br>    const         18.0264      2.121      8.501      0.000      13.850      22.203<br>    x1            30.2890      3.762      8.051      0.000      22.879      37.699<br>    ==============================================================================<br>    Omnibus:                       56.951   Durbin-Watson:                   1.782<br>    Prob(Omnibus):                  0.000   Jarque-Bera (JB):              101.977<br>    Skew:                           1.202   Prob(JB):                     7.18e-23<br>    Kurtosis:                       5.002   Cond. No.                         4.42<br>    ==============================================================================<br><br>    Warnings:<br>    [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br>    [[ 13.84986472  22.20290563]<br>     [ 22.879319    37.69872697]]<br><br><br><font color="blue">The positive slope implies that the number of pickups increases throughout the day. <br><br> The confidence interval is quite wide, indicating that there are many values potentially consistent with the data. So no, we don’t consider the estimates to be reliable. I’d expect a 99% confidence interval to be looser, as it has to allow for an even wider possibility of values </font>
+
+
+<ul>
+<li>Analyze residual plots:<ul>
+<li>Make a plot of the residuals ${e} = y - \hat{y}$ of the model on the training set as a function of the predictor variable $x$ (i.e. time of day). Draw a horizontal line denoting the zero residual value on the Y-axis.</li>
+<li>Using this residual plot, comment on whether the assumption of linearity is valid for this data.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fig, axs = plt.subplots(<span class="number">1</span>,<span class="number">2</span>, figsize=(<span class="number">15</span>, <span class="number">6</span>))</span><br><span class="line"></span><br><span class="line">residuals = (train_data.sort_values([<span class="string">'NormTimeMin'</span>])[[<span class="string">'PickupCount'</span>]].T - y_hat_train)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'train_data shape: '</span>, train_data.shape)</span><br><span class="line">print(<span class="string">'residuals shape: '</span>, residuals.shape)</span><br><span class="line">print(<span class="string">'y_hat_train shape: '</span>, y_hat_train.shape)</span><br><span class="line"></span><br><span class="line">axs[<span class="number">0</span>].scatter(train_data.sort_values([<span class="string">'NormTimeMin'</span>])[[<span class="string">'NormTimeMin'</span>]], </span><br><span class="line">               residuals, alpha=<span class="number">0.5</span>)</span><br><span class="line">axs[<span class="number">0</span>].axhline(y=<span class="number">0</span>, color=sns.color_palette()[<span class="number">1</span>]) </span><br><span class="line">axs[<span class="number">0</span>].set_xlabel(<span class="string">'NormTime (min)'</span>)</span><br><span class="line">axs[<span class="number">0</span>].set_ylabel(<span class="string">'Residual'</span>)</span><br><span class="line"></span><br><span class="line">axs[<span class="number">1</span>].hist(residuals.T.values, alpha=<span class="number">0.5</span>)</span><br><span class="line">axs[<span class="number">1</span>].set_xlabel(<span class="string">'Residuals'</span>)</span><br><span class="line">axs[<span class="number">1</span>].set_ylabel(<span class="string">'Count'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>train_data shape:  (250, 3)
+residuals shape:  (1, 250)
+y_hat_train shape:  (250,)
+
+
+
+
+
+&lt;matplotlib.text.Text at 0xd529978&gt;
+</code></pre><p><img src="output_30_2.png" alt="png"></p>
+<font color="blue">The assumption of linearity does not seem to be justified, as the residuals are not scattered randomly around 0 and there is a clear structure!</font>
+
+<h1 id="Part-c-Polynomial-Regression"><a href="#Part-c-Polynomial-Regression" class="headerlink" title="Part (c): Polynomial Regression"></a>Part (c): Polynomial Regression</h1><p>We proceed to higher-order polynomial models for regression:</p>
+<ul>
+<li>By visual inspection, what polynomial degree do you think would provide the best fit for the data?</li>
+</ul>
+<font color="blue">By inspection, I’d expect a polynomial of degree 4 to work best. There are at least 4 modes there.</font>
+
+<ul>
+<li>At the start of this assignment, we had advised you to normalize the time predictor in the training and test sets to a value in [0,1], and noted that this would be helpful in fitting polynomial regression models. Had the time predictor not been normalized, do you forsee any difficulties in implementing polynomial regression?</li>
+</ul>
+<font color="blue"> The values of Y could grow very large at large times and therefore dominate the MSE </font>
+
+<ul>
+<li>Fit polynomial regression models of degrees 2, 3, 10, 25 and 50 to the training set, and generate visualizations of the fitted models (in the same figure, plot the predicted value from all models as a function of time). </li>
+</ul>
+<font color="blue">The number of coefficients returned should be the degree of the polynomial + 1 for the constant. If the time predictor were not normalized, the values for the predictor would get very large when squared, cubed, etc. For degree value 50, we would likely run into arithmetic overflow.</font>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gen_poly_terms = PolynomialFeatures(degree=<span class="number">3</span>, interaction_only=<span class="keyword">False</span>)</span><br><span class="line">X_train_with_poly = gen_poly_terms.fit_transform(X_train)</span><br><span class="line">X_test_with_poly = gen_poly_terms.fit_transform(X_test)</span><br><span class="line"></span><br><span class="line">poly_regression_model = LinearRegression(fit_intercept=<span class="keyword">True</span>)</span><br><span class="line">poly_regression_model.fit(X_train_with_poly, train_data[<span class="string">'PickupCount'</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">fig, axs = plt.subplots(<span class="number">2</span>,<span class="number">3</span>, figsize=(<span class="number">15</span>, <span class="number">6</span>), facecolor=<span class="string">'w'</span>, edgecolor=<span class="string">'k'</span>)</span><br><span class="line">fig.subplots_adjust(hspace = <span class="number">.5</span>, wspace=<span class="number">.3</span>)</span><br><span class="line">axs = axs.ravel()</span><br><span class="line">degrees = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">25</span>, <span class="number">50</span>]</span><br><span class="line"><span class="comment"># degrees = [1, 2, 3, 9]</span></span><br><span class="line"></span><br><span class="line">r2_train = [] </span><br><span class="line">r2_test = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i,d <span class="keyword">in</span> enumerate(degrees):</span><br><span class="line">    gen_poly_terms = PolynomialFeatures(degree=d, interaction_only=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">    X_train_with_poly = gen_poly_terms.fit_transform(X_train[:,<span class="number">1</span>].reshape(<span class="number">-1</span>,<span class="number">1</span>))</span><br><span class="line">    X_test_with_poly = gen_poly_terms.fit_transform(X_test[:,<span class="number">1</span>].reshape(<span class="number">-1</span>,<span class="number">1</span>))</span><br><span class="line">    </span><br><span class="line">    poly_regression_model = LinearRegression(fit_intercept=<span class="keyword">False</span>)</span><br><span class="line">    poly_regression_model.fit(X_train_with_poly, train_data[<span class="string">'PickupCount'</span>])</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    y_hat_train = poly_regression_model.predict(X_train_with_poly)</span><br><span class="line">    y_hat_test = poly_regression_model.predict(X_test_with_poly)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    r2_train.append( r2_score(train_data[[<span class="string">'PickupCount'</span>]], y_hat_train))</span><br><span class="line">    r2_test.append( r2_score(test_data[[<span class="string">'PickupCount'</span>]], y_hat_test))</span><br><span class="line">    </span><br><span class="line">    axs[i].plot(train_data[[<span class="string">'NormTimeMin'</span>]], train_data[<span class="string">'PickupCount'</span>], <span class="string">'.'</span>, label=<span class="string">'$y_&#123;train&#125;$'</span>)</span><br><span class="line">    axs[i].plot(train_data[[<span class="string">'NormTimeMin'</span>]], y_hat_train, lw=<span class="number">2</span>, label=<span class="string">'$\hat&#123;y&#125;_&#123;train&#125;$'</span>)</span><br><span class="line">    axs[i].set_title(<span class="string">"Degree = "</span> + str(d))</span><br><span class="line">    axs[i].set_xlim(<span class="number">-.005</span>,<span class="number">1.005</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Turn on the legend</span></span><br><span class="line">axs[i].legend()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.legend.Legend at 0xd613eb8&gt;
+</code></pre><p><img src="output_39_1.png" alt="png"></p>
+<ul>
+<li>Evaluate the $R^2$ value of the fitted models on both the training and test sets. Does a high training $R^2$ value necessarily indicate a high test $R^2$ performance? How do the test $R^2$ values from the different polynomial models compare with the test $R^2$ from simple linear regression in Part (b), and the best test $R^2$ from k-NN regression in Part (c)?</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(degrees, r2_test, <span class="string">'s-'</span>, label=<span class="string">'test'</span>)</span><br><span class="line">plt.plot(degrees, r2_train, <span class="string">'s-'</span>, label=<span class="string">'train'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Degree'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'$R^2$'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line"><span class="comment"># plt.gca().set_yscale('log')</span></span><br><span class="line">print(<span class="string">'Polynomial degree'</span>, degrees)</span><br><span class="line">print(<span class="string">'Training R^2'</span>, r2_train)</span><br></pre></td></tr></table></figure>
+<pre><code>Polynomial degree [1, 2, 3, 10, 25, 50]
+Training R^2 [0.20721375209894033, 0.2324332710285808, 0.37483623911770758, 0.4282770686216284, 0.46683429568468526, 0.48051816263385216]
+</code></pre><p><img src="output_41_1.png" alt="png"></p>
+<font color="blue">A high training $R^2$ does not indicate a high test $R^2$. For degrees between 2 and 25, the $R^2$ is better than that of the linear regression and almost as good as that of the best test $R^2$ from KNN.</font>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Generate residual plots for the different polynomial regression models (plot of residuals on training set vs. time). How does the increase in polynomial degree effect the residual plots?</li>
+</ul>
+<p><em>Hint:</em> You may use the <code>PolynomialFeatures</code> class to include polynomial terms in the regression model.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">fig, axs = plt.subplots(<span class="number">2</span>,<span class="number">3</span>, figsize=(<span class="number">15</span>, <span class="number">6</span>), facecolor=<span class="string">'w'</span>, edgecolor=<span class="string">'k'</span>)</span><br><span class="line">fig.subplots_adjust(hspace = <span class="number">.5</span>, wspace=<span class="number">.3</span>)</span><br><span class="line">axs = axs.ravel()</span><br><span class="line">degrees = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">25</span>, <span class="number">50</span>]</span><br><span class="line"></span><br><span class="line">r2_train = [] </span><br><span class="line">r2_test = []</span><br><span class="line"></span><br><span class="line">i =<span class="number">0</span> </span><br><span class="line"><span class="keyword">for</span> i,d <span class="keyword">in</span> enumerate(degrees):</span><br><span class="line">    gen_poly_terms = PolynomialFeatures(degree=d, interaction_only=<span class="keyword">False</span>)</span><br><span class="line">    X_train_with_poly = gen_poly_terms.fit_transform(X_train)</span><br><span class="line">    X_test_with_poly = gen_poly_terms.fit_transform(X_test)</span><br><span class="line">    </span><br><span class="line">    poly_regression_model = LinearRegression(fit_intercept=<span class="keyword">True</span>)</span><br><span class="line">    poly_regression_model.fit(X_train_with_poly, train_data[<span class="string">'PickupCount'</span>])</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    y_hat_train = poly_regression_model.predict(X_train_with_poly)</span><br><span class="line">    y_hat_test = poly_regression_model.predict(X_test_with_poly)</span><br><span class="line">    </span><br><span class="line">    r2_train.append( r2_score(train_data[[<span class="string">'PickupCount'</span>]], y_hat_train))</span><br><span class="line">    r2_test.append( r2_score(test_data[[<span class="string">'PickupCount'</span>]], y_hat_test))</span><br><span class="line">    </span><br><span class="line">    residuals = train_data[<span class="string">'PickupCount'</span>] - y_hat_train</span><br><span class="line">    </span><br><span class="line">    axs[i].scatter(train_data[[<span class="string">'NormTimeMin'</span>]], residuals, lw=<span class="number">1</span>, alpha=<span class="number">0.3</span>)</span><br><span class="line">    axs[i].axhline(y=<span class="number">0</span>, color=sns.color_palette()[<span class="number">1</span>]) </span><br><span class="line">    axs[i].set_title(<span class="string">"Degree="</span> + str(d))</span><br><span class="line">    axs[i].set_xlim(<span class="number">-.005</span>,<span class="number">1.005</span>)</span><br><span class="line">    axs[i].set_ylim(<span class="number">-70</span>, <span class="number">70</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="output_45_0.png" alt="png"></p>
+<h1 id="Part-d"><a href="#Part-d" class="headerlink" title="Part (d):"></a>Part (d):</h1><p>In a brief paragraph (8 or fewer sentences), summarize which of the models seen above you would choose to predict the number of taxi cab pick-ups at any specific time of day. Be sure to explain your choice. Interpret the model you choose, including which predictors are significant and provide and interpret the CIs for their coefficients (if you choose a regression model). How well does you model predict the number of taxi cab pick-ups? How would you improve this model even further? Feel free to refer to visual(s) above or provide a new one to make your case.  </p>
+<p><font color="blue"><br>The answer to this question depends on your analysis above. The “best” model could very well be either kNN or polynomial regression, but a complete answer will give proper justification. Proper justification includes references to the above figures. Additional insight into the computational requirements of each type of model is ideal (which is cheaper to train? Which is cheaper to evaluate?).</font></p>
+</font></font>
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2018 Chris<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
